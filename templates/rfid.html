@@ -1,0 +1,98 @@
+<form method="POST" action="/save_rfid_config" name="rfid_settings">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <label for="device_id">Device ID</label><br/><br/>
+                <label for="device_type">Device Type</label><br/><br/>
+                <label for="connection">Connection Type</label><br/><br/>
+            </div>
+
+            <div class="col-sm-6 col-md-5">
+                <input id="device_id" name="device_id" type="text"
+                       placeholder="Enter Device Id"><br/><br/>
+
+                <!-- Content for Section 2 -->
+                <select id="device_type" name="device_type">
+                    <option value="">Select Device Type</option>
+                    <option value="rfid_printer">RFID PRINTER</option>
+                    <option value="rfid_reader">RFID READER</option>
+                    <option value="rfid_writer">RFID WRITER</option>
+
+
+                </select><br/><br/>
+
+
+                <select id="connection" name="connection_type" onchange="showHideBlock()">
+                    <option value="">Select an option</option>
+                    <option value="usb">USB/RS232</option>
+                    <option value="tcp_ip">TCP IP</option>
+
+
+                </select><br/><br/>
+
+                <div id="usb" class="myBlock" style="display: none;">
+                    <label for="port"> Port:- </label>
+                    <select id="port" name="port">
+                        {% for port in ports %}
+                        <option value="{{ port }}">{{ port }}</option>
+                        {% endfor %}
+                    </select><br/><br/>
+
+                    <label for="baudrate"> Baudrate:- </label>
+                    <select id="baudrate" name="baudrate">
+                        <option value="">Select Baudrate</option>
+                        <option value="9600">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="57600">57600</option>
+                        <option value="115200">115200</option>
+
+                    </select><br/><br/>
+
+                    <label for="reading_mode">Reading Mode:- </label>
+                    <select id="reading_mode" name="reading_mode">
+
+                        <option value="">Read Mode</option>
+                        <option value="EPC">EPC</option>
+                        <option value="UPC">UPC</option>
+
+                    </select><br/><br/>
+
+                </div>
+
+                <div id="tcp_ip" class="myBlock" style="display: none;">
+                    <label for="ip_address">IP Address:-</label>
+                    <input type="text" name="ip_address" id="ip_address"
+                           placeholder="Enter IP Address">
+                    <br/><br/>
+                    <label for="ip_port">Port No.:-</label>
+                    <input type="text" name="ip_port" id="ip_port" placeholder="Enter Port No.">
+                    <br/><br/>
+
+                    <label for="tcp_reading_mode">Reading Mode:- </label>
+                    <select id="tcp_reading_mode" name="tcp_reading_mode">
+
+                        <option value="">Read Mode</option>
+                        <option value="EPC">EPC</option>
+                        <option value="UPC">UPC</option>
+
+                    </select><br/><br/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="save_button">
+        <button class="btn btn-success">Save RFID Config</button>
+    </div>
+</form>
+{% with messages = get_flashed_messages(category_filter=["rfid"]) %}
+{% if messages %}
+
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+
+{% endif %}
+{% endwith %}

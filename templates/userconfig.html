@@ -1,0 +1,327 @@
+<h2>User Config</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" onclick="showTab('home')"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true"><i class="fa fa-user" aria-hidden="true"></i> Roles
+                    </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="administration-tab" onclick="showTab('administration')"
+                            data-bs-toggle="tab" data-bs-target="#administration-tab-pane"
+                            type="button" role="tab" aria-controls="administration-tab-pane" aria-selected="false"><i
+                            class="fa fa-cog" aria-hidden="true"></i> Assign User-Role
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="administration1-tab" onclick="showTab('administration1')"
+                            data-bs-toggle="tab"
+                            data-bs-target="#administration1-tab-pane"
+                            type="button" role="tab" aria-controls="administration1-tab-pane" aria-selected="false"><i
+                            class="fa fa-cog" aria-hidden="true"></i> Assign User-Store
+                    </button>
+                </li>
+
+            </ul>
+            <div id="myTabContent">
+                <div class="tab-content active" id="home" role="tabpanel">
+                    <ul class="nav nav-tabs" id="myTab1" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="add_user-tab" data-bs-toggle="tab"
+                                    onclick="showTab1('add_user')"
+                                    data-bs-target="#add_user-tab-pane" type="button" role="tab"
+                                    aria-controls="add_user-tab-pane"
+                                    aria-selected="true">Add User Role
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="certificate-tab" data-bs-toggle="tab"
+                                    onclick="showTab1('certificate')"
+                                    data-bs-target="#certificate-tab-pane" type="button" role="tab"
+                                    aria-controls="certificate-tab-pane"
+                                    aria-selected="false">Edit Role
+                            </button>
+                        </li>
+
+
+                    </ul>
+                    <div id="myTabContent1">
+                        <div class="tab-content1" id="add_user" role="tabpanel">
+                            <div class="container change_password_block">
+
+                                <div class="row">
+                                    <form action="/add_role" method="post">
+                                        <div class=" col-md-4 col-sm-6">
+
+                                            <label class="form-label">User Role</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="role"
+                                                       placeholder="Enter User Role" required>
+                                            </div>
+                                            <br/>
+
+
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Add Role</button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-content1" id="certificate" role="tabpanel" style="display: none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <th>Role ID</th>
+                                    <th>Role Name</th>
+                                    <th>Permissions</th>
+                                    <th>Actions</th>
+                                    </thead>
+                                    <tbody>
+                                    {% if roleresult %}
+                                    {% for roletpl in roleresult %}
+                                    <tr>
+                                        <td>{{ roletpl[0] }}</td>
+                                        <td>{{ roletpl[1] }}</td>
+                                        <td>{{ roletpl[2] }}</td>
+                                        <td><a href="{{ url_for('update_role', roleid=roletpl[0]) }}" title="Edit Role"
+                                               data-bs-toggle="modal" data-bs-target="#modal-{{ roletpl[0] }}"><i
+                                                class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;<a
+                                                title="Delete Role" href="/delete_role/"
+                                                style="color: red;"
+                                                onclick="return confirm('Are you sure you want to delete this record?');"><i
+                                                class="fa fa-trash"></i></a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modal-{{ roletpl[0] }}"
+                                                 data-bs-backdrop="static"
+                                                 data-bs-keyboard="false" tabindex="-1"
+                                                 aria-labelledby="staticBackdropLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                               Set Permissions</h1>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url_for('update_role', roleid=roletpl[0]) }}"
+                                                                  method="POST">
+                                                                <div class="container">
+<!--                                                                    <label class="form-label">Role Name<span-->
+<!--                                                                            class="star_reqiured"-->
+<!--                                                                            style="color: red;">*</span></label>-->
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" class="form-control"
+                                                                               name="rolename" value="{{ roletpl[1] }}"
+                                                                               placeholder="Role Name"
+                                                                               required>
+                                                                    </div>
+
+<!--                                                                    <div class="permissions-label" id="permissions-label">-->
+<!--                                                                        <h4> Set Permissions</h4>-->
+<!--                                                                    </div>-->
+                                                                    <br/>
+                                                                    <div class="row permission-checkbox">
+                                                                        <div class="col-md-4 col-sm-4 col-lg-4 check-box">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" name="permissions"
+                                                                                       type="checkbox" value="full access"
+                                                                                       id="full_access">
+                                                                                <label class="form-check-label"
+                                                                                       for="full_access" title="Full Access permission allow to access all pages.">
+                                                                                    Full Access
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-4 col-lg-4 check-box">
+                                                                            <div class="form-check">
+                                                                            <input class="form-check-input" name="permissions"
+                                                                                   type="checkbox" value="only store"
+                                                                                   id="only_store">
+                                                                            <label class="form-check-label"
+                                                                                   for="only_store" title="Only Store permission allow to access only Stores.">
+                                                                                Only Store
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-4 col-lg-4 check-box">
+                                                                            <div class="form-check">
+                                                                            <input class="form-check-input" name="permissions"
+                                                                                   type="checkbox" value="view store"
+                                                                                   id="view_store">
+                                                                            <label class="form-check-label"
+                                                                                   for="view_store" title="View Store permission allow to access to view Store info.">
+                                                                                View Store
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <br/>
+                                                                    <div class="row permission-checkbox">
+                                                                        <div class="col-md-4 col-sm-4 col-lg-4 check-box">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" name="permissions"
+                                                                                       type="checkbox" value="view report"
+                                                                                       id="view_report">
+                                                                                <label class="form-check-label"
+                                                                                       for="view_report" title="View Report permission allow to view report.">
+                                                                                    View Report
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-4 col-lg-4 check-box">
+                                                                            <div class="form-check">
+                                                                            <input class="form-check-input" name="permissions"
+                                                                                   type="checkbox" value="view gate"
+                                                                                   id="view_gate">
+                                                                            <label class="form-check-label"
+                                                                                   for="view_gate" title="View Gate permission allow to view gates.">
+                                                                                View Gate
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+                                                                    <br/>
+                                                                    <div class="update-role-btn">
+                                                                        <button type="submit" class="btn btn-success">
+                                                                        Update Role
+                                                                    </button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    {% endfor %}
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="administration" role="tabpanel" style="display: none;">
+            <!-- content goes here -->
+            <br/>
+            <h2>Assign User Role</h2>
+            <br/>
+            <form action="/assign_role" method="POST">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6">
+                        <div class="form-group">
+
+                            <label for="selectuser">Select User</label>
+                            <select class="form-select" id="selectuser" name="user">
+                                {% if result %}
+                                {% for usertpl in result %}
+                                {% for user in usertpl %}
+                                <option value="{{ user|lower }}">{{ user }}</option>
+                                {% endfor %}
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="selectrole">Select Role</label>
+                            <select class="form-select" id="selectrole" name="role">
+                                {% if roleresult %}
+                                {% for roletpl in roleresult %}
+
+                                <option value="{{ roletpl[0] }}">{{ roletpl[1] }}</option>
+
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br/>
+
+                <button type="submit" class="btn btn-success">Assign Role</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="administration1" role="tabpanel" style="display: none;">
+            <!-- content goes here -->
+            <br/>
+            <h2>Assign User Store</h2>
+            <br/>
+            <form action="/assign_store" method="POST">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6">
+                        <div class="form-group">
+
+                            <label for="selectuser1">Select User</label>
+                            <select class="form-select" id="selectuser1" name="user">
+                                {% if result %}
+                                {% for usertpl in result %}
+                                {% for user in usertpl %}
+                                <option value="{{ user|lower }}">{{ user }}</option>
+                                {% endfor %}
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="selectstore">Select Store</label>
+                            <select class="form-select" id="selectstore" name="store">
+
+                                {% if storeresult %}
+                                {% for storetpl in storeresult %}
+
+
+                                <option value="{{ storetpl[0] }}">{{ storetpl[1] }}</option>
+
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br/>
+
+                <button type="submit" class="btn btn-success">Assign Store</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+

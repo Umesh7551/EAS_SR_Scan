@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to EAS Gates Dashboard - Index
+{% endblock %}
+
+{% block content %}
+<!-- The sidebar -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-lg-2">
+            <div class="sidebar">
+<!--                <h2 style="text-align: center; color: white;">SRAgent</h2>-->
+                <p>CONFIGURATION</p>
+<!--                <a href="#userregister" onclick=showDiv('userregister')><i class="fa fa-user-plus"></i> Add User</a>-->
+                <a href="#users" onclick=showDiv('users')><i class="fa fa-users"></i> Users</a>
+<!--                <a href="#storeregister" onclick="showDiv('storeregister')"><i class="fa fa-building"></i> Add Store</a>-->
+                <a href="#stores" onclick=showDiv('stores')><i class="fa fa-building"></i> Stores</a>
+                <a href="#userconfig" onclick="showDiv('userconfig')"><i class="fa fa-user"></i> User Config</a>
+                <a href="#rfid" onclick="showDiv('rfid')"><i class="fa fa-wifi"></i> RFID Config</a>
+<!--                <a href="#mqtt_service" onclick="showDiv('mqtt_service')"><i class="fa fa-cloud"></i> MQTT Service</a>-->
+                <!--                <a href="#read_modes" onclick="showDiv('read_modes')"><i class="fa fa-cog"></i> Read Modes</a>-->
+                <!--                <a href="#database_setup" onclick="showDiv('database_setup')"><i class="fa fa-fw fa-database"></i>-->
+                <!--                    Database Setup</a>-->
+<!--                <a href="#api_integration" onclick="showDiv('api_integration')"><i class="fa fa-bars"></i> API-->
+<!--                    Integration</a>-->
+
+<!--                <a href="#ssh_integration" onclick="showDiv('ssh_integration')"><i class="fa fa-flask"></i> SSH-->
+<!--                    Integration</a>-->
+                <a href="#events" onclick="showDiv('events')"><i class="fa fa-bell"></i> Events</a>
+                <!--                <p>SETUP TESTING</p>-->
+                <!--                <a href="#tag_reading_analysis" onclick="showDiv('tag_reading_analysis')"><i-->
+                <!--                        class="fa fa-fw fa-search"></i> Tag Reading Analysis</a>-->
+                <a href="{{url_for('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+            </div>
+
+        </div>
+        <!--        <div class="col-md-1"></div>-->
+        <div class="col-md-10 col-sm-10 col-lg-10">
+            <div class="rightside_block">
+                <!--<button id="back-button"><< Back</button>--> <a href="{{ url_for('index') }}" class="btn btn-secondary" style="text-decoration: none; margin-bottom: 10px; margin-left: 10px;"><< Back</a>
+                <div id="users" style="display: none;">
+
+                    {% include 'users.html' %}
+
+                </div>
+
+
+                <div id="stores" style="display: none;">
+
+                    {% include 'stores.html' %}
+
+                </div>
+                <div id="userconfig" style="display: none;">
+                    {% include 'userconfig.html' %}
+                </div>
+                <div id="rfid" style="display: none;">
+                    <h2>RFID Config</h2>
+                    {% include 'rfid.html' %}
+
+                </div>
+                <div id="api_integration" style="display: none;">
+                    <h2>API Integration </h2>
+
+                </div>
+                <div id="ssh_integration" style="display: none;">
+
+                </div>
+                <div id="events" style="display: none;">
+                    {% include 'events.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

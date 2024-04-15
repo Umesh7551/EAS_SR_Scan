@@ -1,0 +1,45 @@
+<h2> Store Registration</h2>
+<form method="POST" action="/save_store_config" name="storeconfig">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <label for="fullname">Full Name</label><br/><br/>
+                <label for="username">Username</label><br/><br/>
+                <label for="password">Password</label><br/><br/>
+
+                <label for="phone">Phone No.</label><br/><br/>
+                <label for="email">Email</label><br/><br/>
+            </div>
+
+            <div class="col-sm-6 col-md-5">
+                <input id="fullname" name="fullname" type="text"
+                       placeholder="Enter Full Name"><br/><br/>
+                <input id="username" name="username" type="text"
+                       placeholder="Enter User Name"><br/><br/>
+                <input id="password" name="password" type="text"
+                       placeholder="Enter Password"><br/><br/>
+
+                <input id="phone" name="phone" type="text"
+                       placeholder="Enter Phone No."><br/><br/>
+                <input id="email" name="email" type="text"
+                       placeholder="Enter Email"><br/><br/>
+                <input id="state" name="state" type="text"
+                       placeholder="Enter State"><br/><br/>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="save_button">
+        <button class="btn btn-success">Save User Config</button>
+    </div>
+</form>
+{% with messages = get_flashed_messages(category_filter=[""]) %}
+{% if messages %}
+
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+
+{% endif %}
+{% endwith %}

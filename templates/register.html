@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to SR Cloud - Sign Up
+{% endblock %}
+
+{% block content %}
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 ads">
+            <!--          <h1><span id="fl">SRAgent</span><span id="sl">Name</span></h1>-->
+            <h1><span id="fl">Welcome to<br> EAS Gates Scan</span></h1>
+        </div>
+        <div class="col-md-6 login-form">
+<!--            <div class="profile-img">-->
+
+<!--            </div>-->
+            <h3>Sign Up</h3>
+            <form action="/sign_up" method="POST">
+                <label class="form-label">Username</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+
+                <label class="form-label">Password</label>
+                <div class="form-group password-toggle">
+                    <input type="password" class="form-control" id="password-input" name="password" minlength="8" placeholder="Password">
+                    <i class="toggle-icon fas fa-eye" onclick="togglePassword()"></i>
+                </div>
+
+                <label class="form-label">Confirm Password</label>
+                <div class="form-group password-toggle">
+                    <input type="password" class="form-control" id="confirm_password-input" name="confirm_password" minlength="8" placeholder="Confirm Password">
+                    <i class="toggle-icon fas fa-eye" onclick="togglePassword1()"></i>
+                </div>
+
+                <label class="form-label">Firstname</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                </div>
+
+                <label class="form-label">Lastname</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                </div>
+
+                <label class="form-label">Email</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+
+                <label class="form-label">Phone</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="Phone">
+                </div>
+
+                <label class="form-label">Userrole</label>
+                <div class="form-group">
+                    <select class="form-select" name="userrole" >
+                        {% if userrole %}
+                            {% for usertpl in userrole %}
+
+                                    <option value="{{ usertpl[0] }}">{{ usertpl[1] }}</option>
+
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                </div>
+
+                <br/>
+                 <div>{{ msg }}</div>
+                <!--            <div class="form-group forget-password">-->
+                <!--                <a href="#">Forget Password</a>-->
+                <!--            </div>-->
+                            <div class="form-group forget-password">
+                               <a href="{{url_for('login')}}">You already have an account? Log In</a>
+                            </div>
+            </form>
+            <div id="msg">
+                {% with messages = get_flashed_messages(category_filter=["login_warning"]) %}
+                {% if messages %}
+
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

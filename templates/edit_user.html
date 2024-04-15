@@ -1,0 +1,122 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('edit_user') }}" name="update_userconfig">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <label class="form-label">Full Name<span class="star_reqiured"
+                                                                         style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="fullname" value="{{ user[1] }}"
+                                           placeholder="Full Name" required>
+                                </div>
+                                <br/>
+                                <label class="form-label">User Name<span class="star_reqiured"
+                                                                         style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[2] }}" name="username" placeholder="User Name"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Password<span class="star_reqiured"
+                                                                        style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="password" id="password1" class="form-control" value="{{ user[3] }}" name="password"
+                                           placeholder="Password" required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Confirm Password<span class="star_reqiured"
+                                                                                style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="password" id="confirm_password1" class="form-control"
+                                           name="confirm_password" value="{{ user[4] }}" placeholder="Confirm Password"
+                                           required>
+                                    <p id="password-error" style="color: red;"></p>
+                                </div>
+
+                                <label class="form-label">Phone</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[5] }}" name="phone" minlength="10" maxlength="10"
+                                           placeholder="Phone">
+                                </div>
+                                <br/>
+                                <label class="form-label">Email<span class="star_reqiured" style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" value="{{ user[6] }}" name="email" placeholder="Email" required>
+                                </div>
+                                <br/>
+
+
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <label class="form-label">Zone</label>
+                                <div class="form-group">
+                                    <select class="form-select" name="zone">
+                                        <option value="east" {% if user[7] =='east' %} selected {% endif %}>East</option>
+                                        <option value="west" {% if user[7] =='west' %} selected {% endif %}>West</option>
+                                        <option value="south" {% if user[7] =='south' %} selected {% endif %}>South</option>
+                                        <option value="north" {% if user[7] =='north' %} selected {% endif %}>North</option>
+
+                                    </select>
+                                </div>
+                                <br/>
+                                <label class="form-label">State</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[8] }}" name="state" placeholder="State">
+                                </div>
+                                <br/>
+                                <label class="form-label">City</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[9] }}" name="city" placeholder="City">
+                                </div>
+                                <br/>
+                                <label class="form-label">Designation<span class="star_reqiured"
+                                                                           style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[10] }}" name="designation" placeholder="Designation"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Employee ID<span class="star_reqiured"
+                                                                           style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[11] }}" name="empid" placeholder="Employee ID"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Field 1</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[12] }}" name="field1" placeholder="Field 1">
+                                </div>
+                                <br/>
+                                <label class="form-label">Field 2</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{ user[13] }}" name="field2" placeholder="Field 2">
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="save_button">
+                        <button type="submit" id="update_user_btn" class="btn btn-success">Update User</button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to EAS Gates Scan - Login
+{% endblock %}
+
+{% block content %}
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 ads">
+            <!--          <h1><span id="fl">SRAgent</span><span id="sl">Name</span></h1>-->
+            <h1><span id="fl">Welcome to<br> EAS Gates Scan</span></h1>
+        </div>
+        <div class="col-md-6 login-form">
+            <div class="profile-img">
+
+            </div>
+            <h3>Sign In</h3>
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <br/>
+                <div class="form-group password-toggle">
+                    <input type="password" class="form-control" id="password-input" name="password" minlength="8" placeholder="Password">
+                    <i class="toggle-icon fas fa-eye" onclick="togglePassword()"></i>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+                </div>
+                <br/>
+                <!--            <div class="form-group forget-password">-->
+                <!--                <a href="#">Forget Password</a>-->
+                <!--            </div>-->
+            </form>
+            <div class="form-group forget-password">
+<!--                               <a href="{{url_for('sign_up')}}">New User? Sign Up</a>-->
+                            </div>
+            <div id="msg">
+                {% with messages = get_flashed_messages(category_filter=["login_warning"]) %}
+                {% if messages %}
+
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+
+</div>
+<p style="text-align: center;"> Powered by<br/>
+<img  src="{{ url_for('static', filename='images/cwsuite.jpg') }}" width="200px"/></p>
+
+{% endblock %}

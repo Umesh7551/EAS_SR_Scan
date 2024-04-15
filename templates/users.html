@@ -1,0 +1,478 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="user_data-tab" data-bs-toggle="tab"
+                            onclick="showTab('user_data')"
+                            data-bs-target="#user_data-tab-pane" type="button" role="tab"
+                            aria-controls="user_data-tab-pane"
+                            aria-selected="true"><i class="fa fa-users" aria-hidden="true"></i> Users
+                    </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="user_registration-tab" onclick="showTab('user_registration')"
+                            data-bs-toggle="tab"
+                            data-bs-target="#user_registration-tab-pane"
+                            type="button" role="tab" aria-controls="user_registration-tab-pane" aria-selected="false"><i
+                            class="fa fa-user-plus"></i> Add Users
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="import_user-tab" onclick="showTab('import_user')"
+                            data-bs-toggle="tab"
+                            data-bs-target="#import_user-tab-pane"
+                            type="button" role="tab" aria-controls="import_user-tab-pane" aria-selected="false"><i
+                            class="fa fa-user-plus"></i> Import Users
+                    </button>
+                </li>
+
+
+            </ul>
+            <div id="myTabContent">
+                <div class="tab-content" id="user_data" role="tabpanel">
+                    <h2> User List</h2>
+                    <div>
+                        {% with messages = get_flashed_messages(category_filter=["user_delete_success"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="users_table">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Full Name</th>
+                                <th>User Name</th>
+                                <th>Password</th>
+                                <th>Confirm Password</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Zone</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Designation</th>
+                                <th>Employee ID</th>
+                                <th>Field1</th>
+                                <th>Field2</th>
+                                <th>Role ID</th>
+                                <th>Role Name</th>
+                                <th>Store ID</th>
+                                <th>Store Name</th>
+                                <th width="200px">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if users %}
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user[0] }}</td>
+                                <td>{{ user[1] }}</td>
+                                <td>{{ user[2] }}</td>
+                                <td>{{ user[3] }}</td>
+                                <td>{{ user[4] }}</td>
+                                <td>{{ user[5] }}</td>
+                                <td>{{ user[6] }}</td>
+                                <td>{{ user[7] }}</td>
+                                <td>{{ user[8] }}</td>
+                                <td>{{ user[9] }}</td>
+                                <td>{{ user[10] }}</td>
+                                <td>{{ user[11] }}</td>
+                                <td>{{ user[12] }}</td>
+                                <td>{{ user[13] }}</td>
+                                <td>{{ user[14] }}</td>
+                                <td>{{ user[15] }}</td>
+                                <td>{{ user[16] }}</td>
+                                <td>{{ user[17] }}</td>
+
+                                <td>
+                                    <a href="{{ url_for('update_user', userid=user[0]) }}" class="btn btn-primary" title="Edit User" data-toggle="modal"
+                                            data-target="#modal-{{ user[0] }}"><i
+                                            class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;<a
+                                        title="Delete User" class="btn btn-danger" href="/delete_record/{{ user[0] }}"
+                                        onclick="return confirm('Are you sure you want to delete this record?');"><i
+                                        class="fa fa-trash"></i></a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal-{{ user[0] }}" data-bs-backdrop="static"
+                                         data-bs-keyboard="false" tabindex="-1"
+                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Update
+                                                        User</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ url_for('update_user', userid=user[0]) }}" method="POST" name="update_userconfig">
+
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-md-6">
+
+                                                                    <label class="form-label">Full Name<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               name="fullname" value="{{ user[1] }}"
+                                                                               placeholder="Full Name" required>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">User Name<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[2] }}" name="username"
+                                                                               placeholder="User Name"
+                                                                               required>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Password<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="password" id="password1"
+                                                                               class="form-control"
+                                                                               value="{{ user[3] }}" name="password"
+                                                                               placeholder="Password" required>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Confirm Password<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="password" id="confirm_password1"
+                                                                               class="form-control"
+                                                                               name="confirm_password"
+                                                                               value="{{ user[4] }}"
+                                                                               placeholder="Confirm Password"
+                                                                               required>
+                                                                        <p id="password-error" style="color: red;"></p>
+                                                                    </div>
+
+                                                                    <label class="form-label">Phone</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[5] }}" name="phone"
+                                                                               minlength="10" maxlength="10"
+                                                                               placeholder="Phone">
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Email<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="email" class="form-control"
+                                                                               value="{{ user[6] }}" name="email"
+                                                                               placeholder="Email" required>
+                                                                    </div>
+                                                                    <br/>
+
+
+                                                                </div>
+
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    <label class="form-label">Zone</label>
+                                                                    <div class="form-group">
+                                                                        <select class="form-select" name="zone">
+                                                                            <option value="east" {% if user[7]=='east'
+                                                                                    %} selected {% endif %}>East
+                                                                            </option>
+                                                                            <option value="west" {% if user[7]=='west'
+                                                                                    %} selected {% endif %}>West
+                                                                            </option>
+                                                                            <option value="south" {% if user[7]=='south'
+                                                                                    %} selected {% endif %}>South
+                                                                            </option>
+                                                                            <option value="north" {% if user[7]=='north'
+                                                                                    %} selected {% endif %}>North
+                                                                            </option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">State</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[8] }}" name="state"
+                                                                               placeholder="State">
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">City</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[9] }}" name="city"
+                                                                               placeholder="City">
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Designation<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[10] }}" name="designation"
+                                                                               placeholder="Designation"
+                                                                               required>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Employee ID<span
+                                                                            class="star_reqiured"
+                                                                            style="color: red;">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[11] }}" name="empid"
+                                                                               placeholder="Employee ID"
+                                                                               required>
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Field 1</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[12] }}" name="field1"
+                                                                               placeholder="Field 1">
+                                                                    </div>
+                                                                    <br/>
+                                                                    <label class="form-label">Field 2</label>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               value="{{ user[13] }}" name="field2"
+                                                                               placeholder="Field 2">
+                                                                    </div>
+                                                                    <br/>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="save_button">
+                                                            <button type="submit"
+                                                                    class="btn btn-success">Update User
+                                                            </button>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div id="pagination-container">
+                        <ul id="pagination"></ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-content" id="user_registration" role="tabpanel" style="display: none;">
+                <!-- content goes here -->
+                <br/>
+                <div>
+                    {% with messages = get_flashed_messages(category_filter=["email_exist"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+                    {% with messages = get_flashed_messages(category_filter=["invalid_email"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+                    {% with messages = get_flashed_messages(category_filter=["username_match"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+
+                    {% with messages = get_flashed_messages(category_filter=["empty_form"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+
+                    {% with messages = get_flashed_messages(category_filter=["user_success"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+                    {% with messages = get_flashed_messages(category_filter=["password_mismatch"]) %}
+                    {% if messages %}
+
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+
+                    {% endif %}
+                    {% endwith %}
+
+                </div>
+
+                <h2>User Registration</h2>
+                <br/>
+                <form method="POST" action="/user_register" name="userconfig">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <label class="form-label">Full Name<span class="star_reqiured"
+                                                                         style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="fullname" placeholder="Full Name"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">User Name<span class="star_reqiured"
+                                                                         style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="username" placeholder="User Name"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Password<span class="star_reqiured"
+                                                                        style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="password" id="password" class="form-control" name="password"
+                                           placeholder="Password" required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Confirm Password<span class="star_reqiured"
+                                                                                style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="password" id="confirm_password" class="form-control"
+                                           name="confirm_password" placeholder="Confirm Password"
+                                           required>
+
+                                </div>
+                                <div id="password_error" class="error" style="color: red;"></div>
+                                <br/>
+                                <label class="form-label">Phone</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="phone" minlength="10" maxlength="10"
+                                           placeholder="Phone">
+                                </div>
+                                <br/>
+                                <label class="form-label">Email<span class="star_reqiured" style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                </div>
+                                <br/>
+
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <label class="form-label">Zone</label>
+                                <div class="form-group">
+                                    <select class="form-select" name="zone">
+                                        <option value="east">East</option>
+                                        <option value="west">West</option>
+                                        <option value="south">South</option>
+                                        <option value="north">North</option>
+
+                                    </select>
+                                </div>
+                                <br/>
+                                <label class="form-label">State</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="state" placeholder="State">
+                                </div>
+                                <br/>
+                                <label class="form-label">City</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                </div>
+                                <br/>
+                                <label class="form-label">Designation<span class="star_reqiured"
+                                                                           style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="designation" placeholder="Designation"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Employee ID<span class="star_reqiured"
+                                                                           style="color: red;">*</span></label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="empid" placeholder="Employee ID"
+                                           required>
+                                </div>
+                                <br/>
+                                <label class="form-label">Field 1</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="field1" placeholder="Field 1">
+                                </div>
+                                <br/>
+                                <label class="form-label">Field 2</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="field2" placeholder="Field 2">
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="save_button">
+                        <button type="submit" id="save_user_btn" class="btn btn-success">Save User</button>
+                        <!--        <a href="/edit_user" class=" btn btn-danger">Edit User</a>-->
+                    </div>
+                    <br/>
+                </form>
+
+
+            </div>
+
+            <div class="tab-content" id="import_user" role="tabpanel" style="display: none;">
+                {% include 'import_users.html' %}
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+

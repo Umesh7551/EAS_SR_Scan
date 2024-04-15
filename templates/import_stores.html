@@ -1,0 +1,13 @@
+<h2>Import Store</h2>
+<form action="{{ url_for('import_store') }}" method="POST" enctype="multipart/form-data">
+    <label class="form-label"> Select a file:  </label><span style="color: red;">(File must be .csv file format)</span>
+    <div class="form-group">
+
+        <input class="form-control" type="file" accept=".csv" name="storefile" required>
+        <br/>
+    </div>
+    <div class="import_button">
+        <button type="submit" class="btn btn-success">Import Store</button>
+    </div>
+
+</form>

@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to EAS Gates - Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid section1">
+    <div class="row row1">
+        <div class="col-md-2 col-sm-2 col-lg-2 column1">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Dashboard
+            </button>
+
+            <!-- Modal -->
+            <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Dashboard</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body dashboard_modal_body">
+                            <div class="content-wrapper">
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <!-- Icon Cards-->
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                                            <div class="inforide">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone">
+                                                                            <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                                        <h5>Total Connected Store</h5>
+                                                        {% if total_stores %}
+                                                            {% for total_store in total_stores %}
+                                                                {% for tot_store in total_store %}
+                                                                <h4>{{tot_store}}</h4>
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% endif %}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                                            <div class="inforide">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo">
+                                                                            <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                                        <h5>Total Tag Count</h5>
+                                                        {% if total_tags %}
+                                                            {% for total_tag in total_tags %}
+                                                                {% for tot_tag in total_tag %}
+                                                                <h4>{{ tot_tag }}</h4>
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                                            <div class="inforide">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree">
+                                                                            <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                                        <h5>Billed Tags</h5>
+                                                        {% if billed_tags %}
+                                                            {% for billed_tag in billed_tags %}
+                                                                {% for bil_tag in billed_tag %}
+                                                                <h4>{{ bil_tag }}</h4>
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Icon Cards-->
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                                            <div class="inforide">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridefour">
+                                                                            <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                                        <h5>Unbilled Tags</h5>
+                                                            {% if unbilled_tags %}
+                                                            {% for unbilled_tag in unbilled_tags %}
+                                                                {% for unbil_tag in unbilled_tag %}
+                                                                <h4>{{ unbil_tag }}</h4>
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Second Row--->
+                                    <div class="row">
+
+                                        <!-- Icon Cards-->
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">
+                                            <div class="inforide">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridefive">
+                                                                            <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                                        <h5>Total Not <br/>Connected Store</h5>
+                                                        <h4>0</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+<!--                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">-->
+<!--                                            <div class="inforide">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo">-->
+<!--                                                        &lt;!&ndash;                    <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">-->
+<!--                                                        <h4>Total Tag Count</h4>-->
+<!--                                                        <h2>120</h2>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">-->
+<!--                                            <div class="inforide">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree">-->
+<!--                                                        &lt;!&ndash;                    <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">-->
+<!--                                                        <h4>Billed Tags</h4>-->
+<!--                                                        <h2>50</h2>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash; Icon Cards&ndash;&gt;-->
+<!--                                        <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-2 mt-4">-->
+<!--                                            <div class="inforide">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone">-->
+<!--                                                        &lt;!&ndash;                    <img src="https://vignette.wikia.nocookie.net/nationstates/images/2/29/WS_Logo.png/revision/latest?cb=20080507063620">&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">-->
+<!--                                                        <h4>Unbilled Tags</h4>-->
+<!--                                                        <h2>20</h2>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-10 col-lg-10 column2">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-lg-3"><label for="fromDate">From Date: </label><input
+                        class="form-control"
+                        type="text" id="fromDate"
+                        name="fromdate"
+                        placeholder="From Date">
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3"><label for="toDate">To Date: </label><input class="form-control"
+                                                                                                    type="text"
+                                                                                                    id="toDate"
+                                                                                                    name="todate"
+                                                                                                    placeholder="To Date">
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3"><br/>
+                    <button type="submit" class="btn btn-primary" id="generateReport"> View</button>
+                    <button style="margin-left: 10px;" type="submit" class="btn btn-success" id="exportReport">Export
+                    </button>
+                    <button style="margin-left: 10px;" type="button" class="btn btn-success" id="printReport">Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row2">
+
+        <div class="col-md-2 col-sm-2 col-lg-2 column3">
+            <div class="store_list_section">
+                <h4>Store List</h4>
+                <!-- Show Store list content when admin user is loggedin -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control live-search-box" id="search_store_input"
+                           placeholder="Search Store" aria-label="search store"
+                           aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"
+                                                                                                  aria-hidden="true"></i>
+                    </button>
+                </div>
+                <!-- Show store list content when Role 1 as admin is loggedin-->
+                {% if role == 1 %}
+                <div class="store_list">
+                    {% if stores_data %}
+                    <ul class="store_names" style="list-style:none;">
+                        {% for storename in stores_data %}
+                        <li>
+                            <button class="btn btn-link storebtn">{{ storename[1]|title }}</button>
+                        </li>
+                        {% for number in range(1, storename[4] + 1) %}
+                        <li class="reader_list"><a href="#" style="text-decoration: none;">Reader: {{
+                            number
+                            }}</a></li>
+
+                        {% endfor %}
+                        <hr/>
+
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <!----------------------------------------->
+                <!-- Show store list content when role 2 to 20 is loggedin-->
+                {% if role in range(2, 51) and store == store %}
+                <div class="store_list">
+                    {% if stores_data %}
+                    {% for storename in stores_data %}
+                    {% if storename[0] == store %} {# Assuming the store ID is in the first column of the 'stores_data'
+                    list
+                    #}
+                    <li>
+                        <button class="btn btn-link storebtn">{{ storename[1]|title }}</button>
+                    </li>
+                    {% for number in range(1, storename[4] + 1) %}
+                    <li class="reader_list"><a href="#" style="text-decoration: none;">Reader: {{ number }}</a></li>
+                    {% endfor %}
+                    <hr/>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+                <!----------------------------------------->
+            </div>
+
+        </div>
+
+        <div class="col-md-10 col-sm-10 column4" style="border-radius: 5px;">
+            <!--            <h4> Data</h4>-->
+
+            <div class="rfid_tag_data table-responsive" id="rfid_tag_data">
+                <!--                <div id="response-content"></div>-->
+                <table class="table table-bordered align-middle" id="response-content"
+                       style="text-align:center; border-radius: 5px;">
+                    <thead class="table-dark" style="position:sticky;">
+                    <tr>
+                        <th width="10px">Sr.No</th>
+                        <th width="50px">Tag Data</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Store Code</th>
+                        <th>Reader No.</th>
+                        <th>Gate No.</th>
+                        <th>Bill No.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if role == 1 %}
+                    {% if rfid_tag_data %}
+                    {% for rowtpl in rfid_tag_data %}
+                    <tr data-row-id={{ rowtpl[0] }} style="cursor:pointer;">
+                        <td>{{ rowtpl[0] }}</td>
+                        <td class="rfidNumber" style="padding: 0px;">
+                            <button type="button" class="btn btn-link">{{ rowtpl[1] }}</button>
+                        </td>
+                        <td>{{ rowtpl[2] }}</td>
+                        {% if rowtpl[3] == 'Unbilled' %}
+                        <td style="color: white; background-color: red;">{{ rowtpl[3] }}</td>
+                        {% else %}
+                        <td style="color: white; background-color: green;">{{ rowtpl[3] }}</td>
+                        {% endif %}
+                        <td>{{ rowtpl[4] }}</td>
+                        <td>{{ rowtpl[5] }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    {% else %}
+                    {% if rfid_tag_data %}
+                    {% for rowtpl in rfid_tag_data %}
+                    {% if rowtpl[4] == store %}
+                    <tr data-row-id={{ rowtpl[0] }} style="cursor:pointer;">
+                        <td>{{ rowtpl[0] }}</td>
+                        <td class="rfidNumber" style="padding: 0px;">
+                            <button type="button" class="btn btn-link">{{ rowtpl[1] }}</button>
+                        </td>
+                        <td>{{ rowtpl[2] }}</td>
+                        {% if rowtpl[3] == 'Unbilled' %}
+                        <td style="color: white; background-color: red;">{{ rowtpl[3] }}</td>
+                        {% else %}
+                        <td style="color: white; background-color: green;">{{ rowtpl[3] }}</td>
+                        {% endif %}
+                        <td>{{ rowtpl[4] }}</td>
+                        <td>{{ rowtpl[5] }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div id="pagination-container">
+                <ul id="pagination"></ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row row3">
+        <div class="col-md-2 col-sm-2 column5">
+
+        </div>
+        <div class="col-md-10 col-sm-10 column6">
+            <div class="row inner_row">
+                <div class="col-md-6 col-sm-6 inner_column1" id=""
+                     style="height: 300px; padding: 10px; border-radius: 5px; margin-top:10px; margin-left:10px; background-color:white;">
+                    <h4>RFID Description</h4>
+                    <div id="rfidInfoDiv">
+
+                    </div>
+                    <!--                    <img src="static/images/smartreads.png"/>-->
+                </div>
+                <div class="col-md-1 col-sm-1 empty_column" style="width: 10px;"></div>
+                <div class="col-md-5 col-sm-5 inner_column2" id="opencv_image"
+                     style="height: 300px; padding: 10px; border-radius: 5px; margin-top:10px; background-color:white;">
+                    <h4>Photo</h4></div>
+            </div>
+            <br/>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

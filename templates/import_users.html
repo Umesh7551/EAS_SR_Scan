@@ -1,0 +1,14 @@
+<h2> Import Users List</h2>
+
+<form action="{{ url_for('import_user') }}" method="POST" enctype="multipart/form-data">
+    <label class="form-label"> Select a file:  </label><span style="color: red;">(File must be .csv file format)</span>
+    <div class="form-group">
+
+        <input class="form-control" type="file" accept=".csv" name="userfile" required>
+        <br/>
+    </div>
+    <div class="import_button">
+        <button type="submit" class="btn btn-success">Import Users</button>
+    </div>
+
+</form>

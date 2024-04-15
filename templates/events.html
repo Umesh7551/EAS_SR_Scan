@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-6 col-sm-6 events">
+        <h2>Events</h2>
+    </div>
+    <div class="col-md-6 col-sm-6 email_config">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                style="float: right;">
+            <i class="fa fa-bell" aria-hidden="true"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Email Configuration</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label class="form-label">Sender's Email</label>
+                            <div class="form-group from_email_grp">
+                                <input class="form-control" type="email" name="from_email"
+                                       placeholder="Enter Sender's Email..." required>
+
+                            </div>
+
+                            <label class="form-label">Reciepient's Email</label>
+                            <div class="form-group to_email_grp" style="display: flex;">
+                                <input class="form-control" type="email" name="to_email"
+                                       placeholder="Enter Reciepient's Email..." required><span><button id="add_input"
+                                                                                                        type="button"
+                                                                                                        class="btn btn-secondary">+</button></span>
+                                <br/>
+                            </div>
+
+                            <div id="newinput">
+                                <!--                        <label class="form-label">CC</label>-->
+                            </div>
+                            <br/>
+                            <div id="save_email_config">
+                                <button type="submit" class="btn btn-success">Save Email Config</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="table-responsive">
+    <table class="table table-bordered" id="event-table">
+        <thead class="table-dark">
+        <th>Sr. No.</th>
+        <th>Event Name</th>
+        <th>Description</th>
+        <th>Date & Time</th>
+        </thead>
+        <tbody>
+        {% if events %}
+        {% for event in events %}
+        <tr>
+            <td>{{ event[0] }}</td>
+            <td>{{ event[1] }}</td>
+            <td>{{ event[2] }}</td>
+            <td>{{ event[3] }}</td>
+        </tr>
+
+        {% endfor %}
+
+        {% endif %}
+
+        </tbody>
+    </table>
+</div>
+
+<div id="pagination-container">
+    <ul id="pagination"></ul>
+</div>

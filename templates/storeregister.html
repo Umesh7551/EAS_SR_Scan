@@ -1,0 +1,76 @@
+<h2>Store Registration</h2>
+<form method="POST" action="/store_register" name="storeconfig">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <label class="form-label">Store Name*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="storename" placeholder="Store Name" required>
+                </div>
+                <br/>
+                <label class="form-label">Store Code</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="storecode" placeholder="Store Code" required>
+                </div>
+                <br/>
+
+                <label class="form-label">Gate No.</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="gateno" placeholder="Gate No." required>
+                </div>
+                <br/>
+                <label class="form-label">Reader Count</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="readercount" placeholder="Reader Count" required>
+                </div>
+                <br/>
+
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+                <label class="form-label">Zone</label>
+                <div class="form-group">
+                    <select class="form-select" name="zone">
+                        <option value="">Select Zone</option>
+                        <option value="east">East</option>
+                        <option value="west">West</option>
+                        <option value="south">South</option>
+                        <option value="north">North</option>
+
+                    </select>
+                </div>
+                <br/>
+                <label class="form-label">State</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="state" placeholder="State">
+                </div>
+                <br/>
+                <label class="form-label">City</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="city" placeholder="City">
+                </div>
+                <br/>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="save_button">
+        <button type="submit" class="btn btn-success"> Register Store </button>
+    </div>
+    <br/>
+</form>
+
+<div id="msg">{{ msg }}</div>
+{% with messages = get_flashed_messages(category_filter=[""]) %}
+{% if messages %}
+
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+
+{% endif %}
+{% endwith %}

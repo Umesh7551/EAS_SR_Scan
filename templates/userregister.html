@@ -1,0 +1,162 @@
+<!--<h2>User Registration</h2>-->
+<!--<form method="POST" action="/user_register" name="userconfig">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-6 col-md-6">-->
+<!--                <label class="form-label">Full Name<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="fullname" placeholder="Full Name" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">User Name<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="username" placeholder="User Name" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Password<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Confirm Password<span class="star_reqiured"-->
+<!--                                                                style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Confirm Password"-->
+<!--                           required>-->
+<!--                    <p id="password-error" style="color: red;"></p>-->
+<!--                </div>-->
+
+<!--                <label class="form-label">Phone</label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="phone" minlength="10" maxlength="10" placeholder="Phone">-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Email<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="email" class="form-control" name="email" placeholder="Email" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--&lt;!&ndash;                <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label for="role">Role:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <select class="form-select" id="role" name="role" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="">Select Role</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="admin">Admin</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="storemanager">Storemanager</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="storeadmin">Storeadmin</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="shiftlead">Shiftlead</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="dailymanager">Daliymanager</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="itsupport">ITSupport</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option value="technician">Technician</option>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--            </div>-->
+
+<!--            <div class="col-sm-6 col-md-6">-->
+<!--                <label class="form-label">Zone</label>-->
+<!--                <div class="form-group">-->
+<!--                    <select class="form-select" name="zone">-->
+<!--                        <option value="east">East</option>-->
+<!--                        <option value="west">West</option>-->
+<!--                        <option value="south">South</option>-->
+<!--                        <option value="north">North</option>-->
+
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">State</label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="state" placeholder="State">-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">City</label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="city" placeholder="City">-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Designation<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="designation" placeholder="Designation" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Employee ID<span class="star_reqiured" style="color: red;">*</span></label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="empid" placeholder="Employee ID" required>-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Field 1</label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="field1" placeholder="Field 1">-->
+<!--                </div>-->
+<!--                <br/>-->
+<!--                <label class="form-label">Field 2</label>-->
+<!--                <div class="form-group">-->
+<!--                    <input type="text" class="form-control" name="field2" placeholder="Field 2">-->
+<!--                </div>-->
+<!--                <br/>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="save_button">-->
+<!--        <button type="submit" id="save_user_btn" class="btn btn-success">Save User</button>-->
+<!--&lt;!&ndash;        <a href="/edit_user" class=" btn btn-danger">Edit User</a>&ndash;&gt;-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--<div>-->
+<!--    {% with messages = get_flashed_messages(category_filter=["email_exist"]) %}-->
+<!--{% if messages %}-->
+
+<!--{% for message in messages %}-->
+<!--{{ message }}-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% endwith %}-->
+
+<!--    {% with messages = get_flashed_messages(category_filter=["invalid_email"]) %}-->
+<!--{% if messages %}-->
+
+<!--{% for message in messages %}-->
+<!--{{ message }}-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% endwith %}-->
+
+<!--    {% with messages = get_flashed_messages(category_filter=["username_match"]) %}-->
+<!--{% if messages %}-->
+
+<!--{% for message in messages %}-->
+<!--{{ message }}-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% endwith %}-->
+
+
+<!--    {% with messages = get_flashed_messages(category_filter=["empty_form"]) %}-->
+<!--{% if messages %}-->
+
+<!--{% for message in messages %}-->
+<!--{{ message }}-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% endwith %}-->
+
+
+<!--    {% with messages = get_flashed_messages(category_filter=["user_success"]) %}-->
+<!--{% if messages %}-->
+
+<!--{% for message in messages %}-->
+<!--{{ message }}-->
+<!--{% endfor %}-->
+
+<!--{% endif %}-->
+<!--{% endwith %}-->
+<!--</div>-->
